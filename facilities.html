@@ -33,24 +33,26 @@
 
   <main>
     <section class="hero" aria-labelledby="facilities-hero">
-      <div class="container hero__inner">
-        <div class="hero__copy">
-          <span class="hero__badge">Our Facilities</span>
-          <h1 id="facilities-hero">Built for comfort, performance, and community.</h1>
-          <p>Rope, boulder, and train in a light, air-conditioned space with gear and amenities ready.</p>
-          <div class="hero__actions">
-            <a class="pill pill--primary" href="contact.html">Ready to Experience Our Facilities?</a>
-            <a class="pill pill--ghost" href="classes.html#calendar" style="cursor: pointer; pointer-events: auto;">See classes</a>
+      <div class="hero__inner">
+        <div class="hero__content">
+          <div class="hero__copy">
+            <p class="hero__subheading">
+              <span>Our Facilities</span>
+              <span class="hero__underline"></span>
+            </p>
+            <h1 id="facilities-hero">Built for comfort, performance, and community.</h1>
+            <p class="hero__description">Rope, boulder, and train in a light, air-conditioned space with gear and amenities ready.</p>
+            <div class="hero__actions">
+              <a class="hero__cta hero__cta--primary" href="contact.html">Explore Facilities</a>
+              <a class="hero__cta hero__cta--secondary" href="classes.html">See classes</a>
+            </div>
           </div>
         </div>
         <div class="hero__visual" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1518602164577-79f408875432?auto=format&fit=crop&w=1600&q=80" alt="Climbing facilities">
-          <div class="hero__mask"></div>
+          <img src="https://images.unsplash.com/photo-1518602164577-79f408875432?auto=format&fit=crop&w=1600&q=80" alt="Climbing facilities" loading="eager" fetchpriority="high" width="1600" height="1000">
         </div>
       </div>
     </section>
-
-  </main>
 
     <section id="climbing-areas" class="section">
       <div class="container section__header">
@@ -148,12 +150,16 @@
 
     <section id="cta" class="section">
       <div class="container">
-        <div class="panel" style="text-align: center; padding: var(--space-10); background: linear-gradient(135deg, rgba(250, 228, 4, 0.05), rgba(15, 66, 236, 0.05));">
-          <h2 style="margin-bottom: var(--space-4);">Ready to Experience Our Facilities?</h2>
-          <p class="section__lede" style="margin-bottom: var(--space-6);">Book a visit, join a class, or drop in for a training session.</p>
-          <div class="hero__actions" style="justify-content: center;">
-            <a class="pill pill--primary is-yellow" href="contact.html">Book a Visit</a>
-            <a class="pill pill--ghost" href="classes.html#calendar" style="cursor: pointer; pointer-events: auto;">View Classes</a>
+        <div class="cta-section">
+          <div class="cta-panel">
+            <div class="cta-content">
+              <h2 class="cta-heading">Ready to Experience Our Facilities?</h2>
+              <p class="cta-description">Book a visit, join a class, or drop in for a training session.</p>
+              <div class="cta-actions">
+                <a class="cta-button cta-button--primary" href="contact.html">Book a Visit</a>
+                <a class="cta-button cta-button--secondary" href="classes.html">View Classes</a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

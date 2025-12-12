@@ -1,14 +1,37 @@
 // Optimized initialization - batch DOM queries and use native features
-document.addEventListener('DOMContentLoaded', () => {
-  setupMobileNav();
-  setupContactForm();
-  setupCalendar();
-  setupScrollAnimations();
-  setupParallaxEffect();
-  setupSmoothScroll();
-  setupActiveNavState();
-  setupBackToTop();
-});
+// Prevent service worker registration in webview contexts
+if ('serviceWorker' in navigator) {
+  // Only register service workers in valid contexts (not in webviews/iframes)
+  if (window.self === window.top && document.readyState !== 'uninitialized') {
+    // Service worker registration would go here if needed
+    // Currently not using service workers
+  }
+}
+
+// Ensure document is ready before initialization
+function initializeApp() {
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeApp);
+    return;
+  }
+  
+  // Document is ready, initialize all features
+  try {
+    setupMobileNav();
+    setupContactForm();
+    setupCalendar();
+    setupScrollAnimations();
+    setupParallaxEffect();
+    setupSmoothScroll();
+    setupActiveNavState();
+    setupBackToTop();
+  } catch (error) {
+    console.error('Error initializing app:', error);
+  }
+}
+
+// Start initialization
+initializeApp();
 
 function setupMobileNav() {
   const navToggle = document.querySelector('.nav__toggle');
@@ -147,10 +170,18 @@ function validateEmail(value) {
 function setupCalendar() {
   const calendarGrid = document.getElementById('calendar-grid');
   const detailsContainer = document.getElementById('calendar-details');
-  if (!calendarGrid || !detailsContainer) return;
-
-  const classSchedule = buildSchedule();
-  renderCalendar(calendarGrid, classSchedule, detailsContainer);
+  if (!calendarGrid || !detailsContainer) {
+    return;
+  }
+  
+  try {
+    const classSchedule = buildSchedule();
+    renderCalendar(calendarGrid, classSchedule, detailsContainer);
+  } catch (error) {
+    console.error('Error rendering calendar:', error);
+    // Fallback: render empty calendar
+    renderCalendar(calendarGrid, {}, detailsContainer);
+  }
 }
 
 function setupScrollAnimations() {
@@ -205,14 +236,53 @@ function setupScrollAnimations() {
     header.classList.add('animate-on-scroll');
     observer.observe(header);
   });
+  
+  // Add animation to testimonial cards
+  const testimonialCards = document.querySelectorAll('.testimonial-card');
+  testimonialCards.forEach((card, index) => {
+    card.classList.add('animate-card');
+    card.style.animationDelay = `${index * 100}ms`;
+    observer.observe(card);
+  });
+  
+  // Add animation to testimonial stats
+  const testimonialStats = document.querySelectorAll('.testimonial-stat');
+  testimonialStats.forEach((stat, index) => {
+    stat.classList.add('animate-card');
+    stat.style.animationDelay = `${index * 150}ms`;
+    observer.observe(stat);
+  });
 }
 
 function renderCalendar(grid, schedule, detailsContainer) {
-  const year = 2024;
-  const month = 11; // December is 11 in JS Date zero-index
+  if (!grid) {
+    console.error('Calendar grid element not found');
+    return;
+  }
+  
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth(); // Current month (0-indexed)
+  const monthName = now.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  
+  // Update the month header
+  const monthHeader = document.querySelector('.calendar-month-header');
+  if (monthHeader) {
+    const strongEl = monthHeader.querySelector('strong');
+    if (strongEl) {
+      strongEl.textContent = monthName;
+    } else {
+      monthHeader.innerHTML = `<strong>${monthName}</strong>`;
+    }
+  }
+  
   const firstDay = new Date(year, month, 1).getDay(); // 0=Sun
   const daysInMonth = new Date(year, month + 1, 0).getDate();
+  
+  // Clear grid - CSS will handle the grid display
   grid.innerHTML = '';
+  // Ensure grid class is applied
+  grid.classList.add('calendar-grid');
 
   // Add weekday headers
   const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
@@ -220,6 +290,7 @@ function renderCalendar(grid, schedule, detailsContainer) {
     const el = document.createElement('div');
     el.className = 'calendar-weekday';
     el.textContent = w;
+    el.style.display = 'block';
     grid.appendChild(el);
   });
 
@@ -227,14 +298,19 @@ function renderCalendar(grid, schedule, detailsContainer) {
   for (let i = 0; i < firstDay; i++) {
     const empty = document.createElement('div');
     empty.className = 'calendar-day empty';
+    empty.style.display = 'flex';
     grid.appendChild(empty);
   }
 
   // Add days of the month
+  const monthStr = String(month + 1).padStart(2, '0');
   for (let day = 1; day <= daysInMonth; day++) {
-    const dateKey = `${year}-12-${String(day).padStart(2, '0')}`;
+    const dateKey = `${year}-${monthStr}-${String(day).padStart(2, '0')}`;
     const dayEl = document.createElement('div');
     dayEl.className = 'calendar-day';
+    dayEl.style.display = 'flex';
+    dayEl.style.flexDirection = 'column';
+    dayEl.style.alignItems = 'center';
     
     const dayNumber = document.createElement('div');
     dayNumber.className = 'calendar-day-number';
@@ -269,8 +345,8 @@ function renderCalendar(grid, schedule, detailsContainer) {
     }
 
     dayEl.addEventListener('click', () => {
-      // Remove selected class from all days
-      document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+      // Remove selected class from all days (excluding empty cells)
+      document.querySelectorAll('.calendar-day:not(.empty)').forEach(d => d.classList.remove('selected'));
       dayEl.classList.add('selected');
       
       updateCalendarDetails(detailsContainer, dateKey, classes);
@@ -322,44 +398,98 @@ function formatDate(dateStr) {
 }
 
 function buildSchedule() {
-  return {
-    '2024-12-02': [
-      { name: 'Intro to Climbing', difficulty: 'beginner' },
-    ],
-    '2024-12-04': [
-      { name: 'Lead Climbing', difficulty: 'intermediate' },
-    ],
-    '2024-12-07': [
-      { name: 'Kids Camp', difficulty: 'beginner' },
-    ],
-    '2024-12-09': [
-      { name: 'Technique Workshop', difficulty: 'intermediate' },
-    ],
-    '2024-12-11': [
-      { name: 'Competition Prep', difficulty: 'advanced' },
-    ],
-    '2024-12-14': [
-      { name: 'Family Climbing', difficulty: 'beginner' },
-    ],
-    '2024-12-16': [
-      { name: 'Strength Training', difficulty: 'intermediate' },
-    ],
-    '2024-12-18': [
-      { name: 'Route Setting', difficulty: 'advanced' },
-    ],
-    '2024-12-21': [
-      { name: 'Youth Program', difficulty: 'beginner' },
-    ],
-    '2024-12-23': [
-      { name: 'Movement Clinic', difficulty: 'intermediate' },
-    ],
-    '2024-12-25': [
-      { name: 'Outdoor Prep', difficulty: 'advanced' },
-    ],
-    '2024-12-28': [
-      { name: 'Safety Course', difficulty: 'beginner' },
-    ],
-  };
+  const now = new Date();
+  const currentMonth = now.getMonth(); // 0-indexed month for comparison
+  
+  // Build a weekly recurring schedule for the current month
+  const schedule = {};
+  
+  // Monday classes (Monday = 1)
+  for (let week = 0; week < 4; week++) {
+    const monday = getNextWeekday(now, 1, week);
+    // Only include dates that fall within the current month
+    if (monday.getMonth() === currentMonth) {
+      const dateKey = formatDateKey(monday);
+      schedule[dateKey] = [
+        { name: 'Beginner Fundamentals', difficulty: 'beginner', time: '6:00 PM' },
+      ];
+    }
+  }
+  
+  // Wednesday classes (Wednesday = 3)
+  for (let week = 0; week < 4; week++) {
+    const wednesday = getNextWeekday(now, 3, week);
+    if (wednesday.getMonth() === currentMonth) {
+      const dateKey = formatDateKey(wednesday);
+      if (!schedule[dateKey]) schedule[dateKey] = [];
+      schedule[dateKey].push({ name: 'Intermediate Technique', difficulty: 'intermediate', time: '7:00 PM' });
+    }
+  }
+  
+  // Friday classes (Friday = 5)
+  for (let week = 0; week < 4; week++) {
+    const friday = getNextWeekday(now, 5, week);
+    if (friday.getMonth() === currentMonth) {
+      const dateKey = formatDateKey(friday);
+      if (!schedule[dateKey]) schedule[dateKey] = [];
+      schedule[dateKey].push({ name: 'Advanced Training', difficulty: 'advanced', time: '6:30 PM' });
+    }
+  }
+  
+  // Saturday classes (Saturday = 6)
+  for (let week = 0; week < 4; week++) {
+    const saturday = getNextWeekday(now, 6, week);
+    if (saturday.getMonth() === currentMonth) {
+      const dateKey = formatDateKey(saturday);
+      if (!schedule[dateKey]) schedule[dateKey] = [];
+      schedule[dateKey].push({ name: 'Kids Climbing Camp', difficulty: 'beginner', time: '10:00 AM' });
+    }
+  }
+  
+  // Sunday classes (Sunday = 0)
+  for (let week = 0; week < 4; week++) {
+    const sunday = getNextWeekday(now, 0, week);
+    if (sunday.getMonth() === currentMonth) {
+      const dateKey = formatDateKey(sunday);
+      if (!schedule[dateKey]) schedule[dateKey] = [];
+      schedule[dateKey].push({ name: 'Family Climbing Day', difficulty: 'beginner', time: '2:00 PM' });
+    }
+  }
+  
+  return schedule;
+}
+
+function getNextWeekday(date, targetDay, weekOffset) {
+  // Create date for the first day of the month
+  const result = new Date(date.getFullYear(), date.getMonth(), 1);
+  const firstDay = result.getDay();
+  
+  // Calculate days to add to reach the target weekday
+  let daysToAdd = (targetDay - firstDay + 7) % 7;
+  
+  // If the first day IS the target day, daysToAdd will be 0
+  // For week 0, we want day 1 (the first day of month)
+  // For week 1+, we want the next occurrence (7 days later)
+  if (daysToAdd === 0 && weekOffset === 0) {
+    // Week 0, first day is the target day
+    daysToAdd = 0;
+  } else if (daysToAdd === 0 && weekOffset > 0) {
+    // Week 1+, first day is target day, so next occurrence is 7 days later
+    daysToAdd = 7 * weekOffset;
+  } else {
+    // First day is not target day, calculate normally
+    daysToAdd = daysToAdd + (weekOffset * 7);
+  }
+  
+  result.setDate(1 + daysToAdd);
+  return result;
+}
+
+function formatDateKey(date) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 }
 
 // Subtle parallax effect for hero image

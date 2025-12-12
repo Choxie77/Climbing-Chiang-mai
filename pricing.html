@@ -33,19 +33,23 @@
 
   <main>
     <section class="hero" aria-labelledby="pricing-hero">
-      <div class="container hero__inner">
-        <div class="hero__copy">
-          <span class="hero__badge" style="background: rgba(250, 228, 4, 0.1); color: var(--accent-yellow);">Pricing</span>
-          <h1 id="pricing-hero">Simple, transparent pricing for everyone.</h1>
-          <p>Choose the pass or membership that fits your climbing goals. All prices include access to our full facility.</p>
-          <div class="hero__actions">
-            <a class="pill pill--primary is-yellow" href="contact.html">Get Started</a>
-            <a class="pill pill--ghost" href="facilities.html">View Facilities</a>
+      <div class="hero__inner">
+        <div class="hero__content">
+          <div class="hero__copy">
+            <p class="hero__subheading">
+              <span>Pricing</span>
+              <span class="hero__underline"></span>
+            </p>
+            <h1 id="pricing-hero">Simple, transparent pricing for everyone.</h1>
+            <p class="hero__description">Choose the pass or membership that fits your climbing goals. All prices include access to our full facility.</p>
+            <div class="hero__actions">
+              <a class="hero__cta hero__cta--primary" href="contact.html">Get Started</a>
+              <a class="hero__cta hero__cta--secondary" href="facilities.html">View Facilities</a>
+            </div>
           </div>
         </div>
         <div class="hero__visual" aria-hidden="true">
-          <img src="https://images.unsplash.com/photo-1509027572317-1c7a5d30e42c?auto=format&fit=crop&w=1600&q=80" alt="Climbing gym">
-          <div class="hero__mask"></div>
+          <img src="https://images.unsplash.com/photo-1509027572317-1c7a5d30e42c?auto=format&fit=crop&w=1600&q=80" alt="Climbing gym" loading="eager" fetchpriority="high" width="1600" height="1000">
         </div>
       </div>
     </section>
