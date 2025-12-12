@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MainWall | Classes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo-mainwall-color.png" alt="MainWall Climbing logo">
+        <span class="brand__text">
+          <span>MainWall</span>
+          <span>Climbing · Chiang Mai</span>
+        </span>
+      </a>
+      <nav class="nav__links" id="primary-nav" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="facilities.html">Facilities</a>
+        <a href="classes.html" class="is-active">Classes</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <a class="pill pill--primary" href="contact.html">Book a session</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="calendar" class="section">
+      <div class="container">
+        <div class="section__header" style="margin-bottom: var(--space-6);">
+          <div>
+            <h2 style="font-size: clamp(2rem, 4vw, 3rem); margin-bottom: var(--space-2);">
+              Weekly <span style="color: var(--accent-yellow);">Schedule</span>
+            </h2>
+            <p class="section__lede" style="margin-bottom: var(--space-6);">Click on any day to see detailed class information and availability.</p>
+          </div>
+        </div>
+        <div class="calendar-wrapper">
+          <div class="calendar-legend">
+            <div class="legend-item">
+              <span class="legend-dot legend-dot--beginner"></span>
+              <span>Beginner</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot legend-dot--intermediate"></span>
+              <span>Intermediate</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot legend-dot--advanced"></span>
+              <span>Advanced</span>
+            </div>
+          </div>
+          <div class="calendar-container">
+            <div class="calendar-month-header">
+              <strong>December 2024</strong>
+            </div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+          </div>
+          <div class="calendar-details" id="calendar-details">
+            <p class="calendar-details-text">Select a date to view class details</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="programs" class="section animate-on-scroll">
+      <div class="container section__header">
+        <div>
+          <p class="eyebrow">Programs</p>
+          <h2>Progress with structured coaching</h2>
+          <p class="section__lede">From foundations to advanced techniques, our programs are designed to help you climb stronger.</p>
+        </div>
+      </div>
+      <div class="container cards-grid">
+        <article class="card animate-card">
+          <h3>Beginner (4-week)</h3>
+          <p>Foundations: tying in, belay basics, movement fundamentals.</p>
+          <ul class="list">
+            <li><span class="dot"></span>Two coached sessions per week</li>
+            <li><span class="dot"></span>Includes rental gear and safety certification</li>
+            <li><span class="dot"></span>End-of-block assessment</li>
+          </ul>
+          <span class="tag" style="background: rgba(34, 197, 94, 0.12); color: #16a34a;">Beginner</span>
+        </article>
+        <article class="card animate-card">
+          <h3>Intermediate (6-week)</h3>
+          <p>Lead climbing, route-reading, fall practice, and efficiency.</p>
+          <ul class="list">
+            <li><span class="dot"></span>Lead practice + clipping drills</li>
+            <li><span class="dot"></span>Strength and endurance plans</li>
+            <li><span class="dot"></span>Video review and personalized drills</li>
+          </ul>
+          <span class="tag" style="background: rgba(59, 130, 246, 0.12); color: #2563eb;">Intermediate</span>
+        </article>
+        <article class="card animate-card">
+          <h3>Advanced (monthly workshops)</h3>
+          <p>Competition tactics, board power, limit bouldering, and projecting.</p>
+          <ul class="list">
+            <li><span class="dot"></span>1–2 sessions per month</li>
+            <li><span class="dot"></span>Mobility and injury-prevention</li>
+            <li><span class="dot"></span>Guest setters and visiting coaches</li>
+          </ul>
+          <span class="tag" style="background: rgba(249, 115, 22, 0.12); color: #ea580c;">Advanced</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="youth" class="section animate-on-scroll">
+      <div class="container section__header">
+        <div>
+          <p class="eyebrow">Youth Programs</p>
+          <h2>Inspiring the next generation of climbers through fun, safe, and educational programs.</h2>
+        </div>
+      </div>
+      <div class="container cards-grid">
+        <article class="card animate-card">
+          <div class="card__img" style="height: 200px; background: linear-gradient(135deg, rgba(15, 66, 236, 0.1), rgba(250, 228, 4, 0.1)); display: flex; align-items: center; justify-content: center; color: var(--text); font-weight: 700;">Kids Climbing Camps</div>
+          <h3>Kids Climbing Camps</h3>
+          <p>School holiday programs combining climbing instruction with fun activities and team building exercises.</p>
+          <ul class="list">
+            <li><span class="dot"></span>Ages 6-16 welcome</li>
+            <li><span class="dot"></span>School holiday programs</li>
+            <li><span class="dot"></span>Professional instruction</li>
+          </ul>
+          <span class="tag tag--yellow">Ages 6-16</span>
+        </article>
+        <article class="card animate-card">
+          <div class="card__img" style="height: 200px; background: linear-gradient(135deg, rgba(250, 228, 4, 0.1), rgba(15, 66, 236, 0.1)); display: flex; align-items: center; justify-content: center; color: var(--text); font-weight: 700;">Youth Climbing Team</div>
+          <h3>Youth Climbing Team</h3>
+          <p>Competitive climbing team for dedicated young climbers looking to develop advanced skills and compete.</p>
+          <ul class="list">
+            <li><span class="dot"></span>Ages 10-18</li>
+            <li><span class="dot"></span>Regular training sessions</li>
+            <li><span class="dot"></span>Competition opportunities</li>
+          </ul>
+          <span class="tag">Ages 10-18</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="community" class="section animate-on-scroll">
+      <div class="container section__header">
+        <div>
+          <p class="eyebrow">Community Events</p>
+          <h2>Regular events and competitions that bring our climbing community together.</h2>
+        </div>
+      </div>
+      <div class="container cards-grid">
+        <article class="card animate-card">
+          <div class="card__img" style="height: 180px; background: linear-gradient(135deg, rgba(15, 66, 236, 0.15), rgba(250, 228, 4, 0.15)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">Monthly Competitions</div>
+          <h3>Monthly Competitions</h3>
+          <p>Friendly competitions for all skill levels with prizes and community recognition.</p>
+          <ul class="list">
+            <li><span class="dot"></span>First Saturday of each month</li>
+            <li><span class="dot"></span>Multiple difficulty categories</li>
+            <li><span class="dot"></span>Prizes for top performers</li>
+            <li><span class="dot"></span>All skill levels welcome</li>
+          </ul>
+          <span class="tag tag--yellow">Monthly</span>
+        </article>
+        <article class="card animate-card">
+          <div class="card__img" style="height: 180px; background: linear-gradient(135deg, rgba(250, 228, 4, 0.15), rgba(15, 66, 236, 0.15)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">Social Climbing Nights</div>
+          <h3>Social Climbing Nights</h3>
+          <p>Weekly social sessions to meet other climbers and enjoy climbing in a relaxed atmosphere.</p>
+          <ul class="list">
+            <li><span class="dot"></span>Every Friday evening</li>
+            <li><span class="dot"></span>No experience required</li>
+            <li><span class="dot"></span>Meet new climbing partners</li>
+            <li><span class="dot"></span>Community building focus</li>
+          </ul>
+          <span class="tag">Weekly</span>
+        </article>
+        <article class="card animate-card">
+          <div class="card__img" style="height: 180px; background: linear-gradient(135deg, rgba(15, 66, 236, 0.15), rgba(250, 228, 4, 0.15)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 1.2rem;">Skills Workshops</div>
+          <h3>Skills Workshops</h3>
+          <p>Specialized workshops covering advanced techniques, safety, and outdoor climbing preparation.</p>
+          <ul class="list">
+            <li><span class="dot"></span>Monthly weekend workshops</li>
+            <li><span class="dot"></span>Expert instructors</li>
+            <li><span class="dot"></span>Small group sizes</li>
+            <li><span class="dot"></span>Hands-on learning</li>
+          </ul>
+          <span class="tag tag--yellow">Monthly</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="social" class="section animate-on-scroll">
+      <div class="container section__header">
+        <div>
+          <p class="eyebrow">Follow Along</p>
+          <h2>Stay connected with our community</h2>
+        </div>
+      </div>
+      <div class="container social-cards-wrapper">
+        <article class="social-card social-card--instagram animate-card">
+          <div class="social-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+              <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Instagram</h3>
+          <p>Follow us @mainwallcnx for daily climbing inspiration, community highlights, and event updates.</p>
+          <a href="https://instagram.com/mainwallcnx" target="_blank" rel="noopener noreferrer" class="social-card__button">
+            Follow @mainwallcnx
+          </a>
+        </article>
+        <article class="social-card social-card--facebook animate-card">
+          <div class="social-card__icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Facebook</h3>
+          <p>Like our Facebook page for event announcements, community discussions, and climbing news.</p>
+          <a href="https://facebook.com/mainwallclimbing" target="_blank" rel="noopener noreferrer" class="social-card__button">
+            Like Our Page
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="cta" class="section">
+      <div class="container">
+        <div class="panel" style="text-align: center; padding: var(--space-10); background: linear-gradient(135deg, rgba(250, 228, 4, 0.05), rgba(15, 66, 236, 0.05));">
+          <h2 style="margin-bottom: var(--space-4);">Ready to Join Our Community?</h2>
+          <p class="section__lede" style="margin-bottom: var(--space-6);">Pick a class, bring a friend, and start climbing stronger.</p>
+          <div class="hero__actions" style="justify-content: center;">
+            <a class="pill pill--primary is-yellow" href="contact.html">Reserve a Spot</a>
+            <a class="pill pill--ghost" href="facilities.html">View Facilities</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <div class="brand">
+          <img src="assets/logo-mainwall-color.png" alt="MainWall Climbing logo" width="60" height="60">
+          <span class="brand__text">
+            <span>MainWall</span>
+            <span>Quiet luxury indoor climbing</span>
+          </span>
+        </div>
+        <p class="footer__description">Chiang Mai's premier indoor climbing destination. World-class facilities, expert coaching, and a welcoming community.</p>
+      </div>
+      
+      <div class="footer__links">
+        <div class="footer__nav">
+          <h4 class="footer__heading">Quick Links</h4>
+          <nav aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="facilities.html">Facilities</a>
+            <a href="classes.html">Classes</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        
+        <div class="footer__contact">
+          <h4 class="footer__heading">Contact</h4>
+          <div class="footer__contact-info">
+            <p>
+              <a href="https://maps.google.com/?q=181+Rachadamnoen+Rd,+Chiang+Mai" target="_blank" rel="noopener noreferrer">
+                181 Rachadamnoen Rd<br>
+                Chiang Mai 50200, Thailand
+              </a>
+            </p>
+            <p>
+              <a href="tel:+66613242691">061 324 2691</a>
+            </p>
+            <p>
+              <a href="mailto:info@mainwallclimbing.com">info@mainwallclimbing.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer__meta">
+        <div class="footer__hours">
+          <p><strong>Hours</strong></p>
+          <p>Mon–Fri: 11 AM–9 PM<br>Sat–Sun: 9 AM–8 PM</p>
+        </div>
+        <p class="footer__copyright">© 2024 Main Wall Climbing Gym. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
+
