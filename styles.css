@@ -1497,7 +1497,7 @@ img[loading="lazy"] {
     justify-content: center;
     margin-top: var(--space-2);
   }
-
+}
 
 @media (max-width: 840px) {
   .contact-info {
