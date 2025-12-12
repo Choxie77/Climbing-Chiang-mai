@@ -1,6 +1,8 @@
 :root {
   --accent-blue: #0f42ec;
   --accent-yellow: #fae404;
+  --blue-light: #5155B9;
+  --blue-dark: #1A2B42;
   --bg: #f7f8fa;
   --surface: #ffffff;
   --muted: #e6e9ed;
@@ -434,7 +436,7 @@ img[loading="lazy"] {
   left: 0;
   right: 0;
   height: 4px;
-  background: linear-gradient(90deg, var(--accent-yellow) 0%, var(--accent-blue) 100%);
+  background: linear-gradient(90deg, rgba(81, 85, 185, 1) 0%, rgba(26, 43, 66, 1) 100%);
 }
 
 .cta-content {
@@ -1710,7 +1712,7 @@ div#calendar-grid.calendar-grid {
 }
 
 .calendar-details {
-  background: linear-gradient(135deg, rgba(250, 228, 4, 0.03), rgba(15, 66, 236, 0.03));
+  background: linear-gradient(135deg, rgba(81, 85, 185, 0.03), rgba(26, 43, 66, 0.03));
   border: 1px solid rgba(250, 228, 4, 0.15);
   border-radius: var(--radius);
   padding: var(--space-5);
@@ -3171,7 +3173,7 @@ body {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-yellow) 100%);
+  background: linear-gradient(135deg, rgba(81, 85, 185, 1) 0%, rgba(26, 43, 66, 1) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
