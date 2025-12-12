@@ -120,36 +120,41 @@
           <div class="contact-form-wrapper">
             <div class="panel contact" style="background: linear-gradient(135deg, rgba(250, 228, 4, 0.05), rgba(250, 228, 4, 0.1)); border: 1px solid rgba(250, 228, 4, 0.2);">
               <h3 style="margin-bottom: var(--space-5); color: var(--text);">Send us a Message</h3>
+              <div id="form-status" role="status" aria-live="polite" aria-atomic="true" class="form-status"></div>
               <form id="contact-form" action="#" method="post">
                 <div class="field">
-                  <label for="name">Name</label>
-                  <input id="name" name="name" type="text" required placeholder="Your full name">
+                  <label for="name">Name <span aria-label="required">*</span></label>
+                  <input id="name" name="name" type="text" required aria-required="true" aria-describedby="name-error" placeholder="Your full name">
+                  <span id="name-error" class="field-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="field">
-                  <label for="email">Email</label>
-                  <input id="email" name="email" type="email" required placeholder="you@example.com">
+                  <label for="email">Email <span aria-label="required">*</span></label>
+                  <input id="email" name="email" type="email" required aria-required="true" aria-describedby="email-error" placeholder="you@example.com">
+                  <span id="email-error" class="field-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="field">
-                  <label for="phone">Phone <span style="color: var(--subtext); font-weight: 400; font-size: 0.9rem;">(optional)</span></label>
-                  <input id="phone" name="phone" type="tel" placeholder="+66 XX XXX XXXX">
+                  <label for="phone">Phone <span class="field-optional">(optional)</span></label>
+                  <input id="phone" name="phone" type="tel" aria-describedby="phone-error" placeholder="+66 XX XXX XXXX">
+                  <span id="phone-error" class="field-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="field">
-                  <label for="subject">Subject</label>
-                  <select id="subject" name="subject" required>
+                  <label for="subject">Subject <span aria-label="required">*</span></label>
+                  <select id="subject" name="subject" required aria-required="true" aria-describedby="subject-error">
                     <option value="">Choose a subject</option>
-                    <option>General Inquiry</option>
-                    <option>Classes & Programs</option>
-                    <option>Facility Rental</option>
-                    <option>Membership</option>
-                    <option>Events</option>
+                    <option value="General Inquiry">General Inquiry</option>
+                    <option value="Classes & Programs">Classes & Programs</option>
+                    <option value="Facility Rental">Facility Rental</option>
+                    <option value="Membership">Membership</option>
+                    <option value="Events">Events</option>
                   </select>
+                  <span id="subject-error" class="field-error" role="alert" aria-live="polite"></span>
                 </div>
                 <div class="field">
-                  <label for="message">Message</label>
-                  <textarea id="message" name="message" rows="5" required placeholder="How can we help you?"></textarea>
+                  <label for="message">Message <span aria-label="required">*</span></label>
+                  <textarea id="message" name="message" rows="5" required aria-required="true" aria-describedby="message-error" placeholder="How can we help you?"></textarea>
+                  <span id="message-error" class="field-error" role="alert" aria-live="polite"></span>
                 </div>
-                <button class="pill pill--primary is-yellow" type="submit" style="width: 100%; justify-content: center;">Send Message</button>
-                <div class="form-status" style="margin-top: var(--space-3); text-align: center; min-height: 24px;" aria-live="polite"></div>
+                <button class="pill pill--primary is-yellow pill--full" type="submit">Send Message</button>
               </form>
             </div>
           </div>
