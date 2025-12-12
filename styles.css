@@ -251,6 +251,12 @@ img[loading="lazy"] {
   outline: none;
 }
 
+.nav__links a.is-active {
+  color: var(--accent-blue);
+  background: rgba(15, 66, 236, 0.12);
+  font-weight: 600;
+}
+
 .nav__toggle {
   display: none;
   border: 1px solid var(--muted);
